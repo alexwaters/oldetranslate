@@ -28,11 +28,23 @@ table.bordered tr th, table.bordered tr td { border: 1px solid #000000; }
 #pagination .selected { font-weight: bold; color: #8D0D19;}
 
 
-form input[type=text] {
-	position: absolute;
-	left: 50%;
-	width: 30%;
-	Height: 5%;
-	
+.textarea {
+	border: 1px solid #8595B2;
+	background-color: #fff;
+	font: "Lucida Grande", "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #5A698B;
+	margin: 4px 0 5px 8px;
+}
+
+.label {
+	text-align: right;
+	float: left;
+	display: block;
+	margin-right: 2px;
+
+}
+
+.submit {
+	margin: 0 0 0 61px;
 	
 }
