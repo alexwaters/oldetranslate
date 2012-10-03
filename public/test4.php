@@ -19,6 +19,6 @@ if(isset($_POST['submit'])){
 <input type="submit" name="submit" value="Translate" />
 <br />
 <?php
-var_dump($session->message);
+echo $session->message;
 ?>
 </html>
