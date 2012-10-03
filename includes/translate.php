@@ -17,7 +17,7 @@ class Translate extends DatabaseObject {
 	"you" => "thou",
 	"are" => "art",
 	"can" => "canst",
-	"do" => "dost",
+	"do" => "doest",
 	"does" => "dost",
 	"has" => "hath",
 	"here" => "hither",
@@ -33,6 +33,7 @@ class Translate extends DatabaseObject {
 	"made" => "wrought",
 	"created" => "wrought",
 	"leave" => "bequeth",
+	"facebook" => "the Kingdom of Zuckerberg"
 			
 	);  
 	
