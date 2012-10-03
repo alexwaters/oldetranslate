@@ -1,0 +1,72 @@
+<?
+require_once('ote.class.php');
+
+if( $_SESSION['level'] < 5 ) {  
+	$_SESSION['alert'] = $ote->__('admin error: permission level 5 required'); 
+	header('HTTP/1.1 301 Moved Permanently');
+	header('Location: ' . HOSTNAME); exit;
+}
+
+$ote->check_if_url_too_long( $depth=4, $dir='modify/' );
+
+$c = explode('/', $_SERVER['REQUEST_URI']);
+
+$word = $c[2+DEPTH];
+$word_id = $ote->get_word_id_by_name( $word );
+
+
+
+
+if( $ote->number_of_rows == 0 ) {
+	$ote->show_header();
+	print $ote->__('word not found');
+	$ote->show_footer();
+	exit;
+}
+
+
+if( $_POST ) {
+
+	$new_word = $ote->clean( $_POST['w'] );
+
+	if( $new_word == '' ) {
+		print $ote->__('word not found');
+		$ote->show_footer();
+		exit;
+	}
+
+	$ote->raw_query("UPDATE ote_word SET word = '" . mysql_real_escape_string($new_word) 
+	. "' WHERE id = '" . $word_id . "' LIMIT 1");
+
+	$_SESSION['alert'] .= $ote->__('word modified') . '<br />';
+
+	header('Location: ' . HOSTNAME . 'modify/' . urlencode($new_word) );
+	exit;
+
+} // end if post
+
+
+$ote->show_header();
+
+print '
+<form action="' . HOSTNAME . 'modify/' . urlencode($word) . '" method="POST">
+<p>
+<input type="text" name="w" maxlength="127" size="127" value="' . $ote->clean($word) . '">
+<br />
+<input type="submit" value="                         ' . $ote->__('modify word') . '                           ">
+</p>
+</form>
+';
+
+$source_links = $ote->get_links_by_word_id( $word_id );
+$target_links = $ote->get_reverse_links_by_word_id( $word_id );
+
+
+
+print '<br />'
+. '<br />word_id=' . $word_id
+. '<br />source_links=' . $ote->xdebug($source_links)
+. '<br />target_links=' . $ote->xdebug($target_links)
+;
+
+$ote->show_footer();

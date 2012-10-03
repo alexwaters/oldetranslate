@@ -1,0 +1,10 @@
+# robots.txt
+
+User-agent: *
+Disallow: /oldetranslate/ote/task/
+
+User-agent: *
+Disallow: /oldetranslate/ote/user/
+
+User-agent: *
+Disallow: /oldetranslate/ote/admin/
